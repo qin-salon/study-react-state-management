@@ -18,11 +18,11 @@
 
 # 本講座で取り扱う予定の状態管理手法（2022/03/27 時点）
 
-1. React Context
-1. Redux
-1. Zustand
-1. XState
-1. Recoil
-1. Jotai
-1. Valtio
-1. React Query や SWR のキャッシュ
+1. [React Context](https://beta.reactjs.org/apis/createcontext)
+1. [Redux](https://redux.js.org/)
+1. [Zustand](https://zustand-demo.pmnd.rs/)
+1. [XState](https://xstate.js.org/)
+1. [Recoil](https://recoiljs.org/)
+1. [Jotai](https://jotai.org/)
+1. [Valtio](https://valtio-demo.pmnd.rs/)
+1. [React Query](https://react-query.tanstack.com/) や [SWR](https://swr.vercel.app/ja) のキャッシュ
