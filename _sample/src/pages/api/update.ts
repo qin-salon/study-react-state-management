@@ -1,9 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-
-export type User = {
-  name: string;
-  image: string;
-};
+import { User } from "src/types";
 
 export default async function handler(
   req: NextApiRequest,

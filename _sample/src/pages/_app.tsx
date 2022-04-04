@@ -1,21 +1,25 @@
 import type { AppProps } from "next/app";
-import Head from "next/head";
+import { useEffect, useState } from "react";
 import { Layout } from "src/components/Layout";
+import { User } from "src/types";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.rawgit.com/kimeiga/bahunya/css/bahunya-0.1.3.css"
-        />
-      </Head>
+  const [user, setUser] = useState<User | null>(null);
 
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </>
+  useEffect(() => {
+    fetch("/api/user")
+      .then((res) => res.json())
+      .then((json) => setUser(json));
+  }, []);
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <Layout user={user}>
+      <Component {...pageProps} user={user} />
+    </Layout>
   );
 }
 

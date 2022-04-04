@@ -1,9 +1,10 @@
 import type { NextPage } from "next";
 import { useState } from "react";
+import { User } from "src/types";
 
-const Edit: NextPage = () => {
-  const [name, setName] = useState("しまぶー");
-  const [image, setImage] = useState("shimabu");
+const Edit: NextPage<{ user: User }> = ({ user }) => {
+  const [name, setName] = useState(user.name);
+  const [imageId, setImageId] = useState(user.imageId);
 
   return (
     <div>
@@ -13,20 +14,21 @@ const Edit: NextPage = () => {
           e.preventDefault();
           const res = await fetch("/api/update", {
             method: "POST",
-            body: JSON.stringify({ name, image }),
+            body: JSON.stringify({ name, imageId }),
           });
           const json = await res.json();
           console.log(json);
         }}
       >
-        <label htmlFor="image">画像</label>
+        <label htmlFor="imageId">画像</label>
         <input
           type="text"
-          id="image"
-          name="image"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
+          id="imageId"
+          name="imageId"
+          value={imageId}
+          onChange={(e) => setImageId(e.target.value)}
           autoComplete="off"
+          required
         />
 
         <label htmlFor="name">名前</label>
@@ -37,6 +39,7 @@ const Edit: NextPage = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           autoComplete="off"
+          required
         />
 
         <button>変更</button>

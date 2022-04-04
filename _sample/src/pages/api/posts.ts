@@ -1,9 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-
-export type Post = {
-  id: number;
-  title: string;
-};
+import { Post } from "src/types";
+import { sleep } from "src/utils/sleep";
 
 export default async function handler(
   _req: NextApiRequest,
@@ -16,5 +13,3 @@ export default async function handler(
     { id: 3, title: "テスト記事タイトル3" },
   ]);
 }
-
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));

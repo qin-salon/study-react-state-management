@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
-import { Post } from "src/pages/api/posts";
+import { Post } from "src/types";
 
 const Index: NextPage = () => {
   const [posts, setPosts] = useState<Post[]>([]);

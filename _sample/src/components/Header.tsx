@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { VFC } from "react";
+import { User } from "src/types";
 
-export const Header = () => {
+export const Header: VFC<{ user: User }> = ({ user }) => {
   return (
     <header>
       <nav>
@@ -20,12 +22,12 @@ export const Header = () => {
 
       <div>
         <Image
-          src={`https://api.multiavatar.com/shimabu.png`}
+          src={`https://api.multiavatar.com/${user.imageId}.png`}
           alt="avatar"
-          width={60}
-          height={60}
+          width={100}
+          height={100}
         />
-        <p>しまぶー</p>
+        <p>{user.name}</p>
       </div>
     </header>
   );
