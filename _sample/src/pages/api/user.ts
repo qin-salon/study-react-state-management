@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { User } from "src/types";
+import { sleep } from "src/utils/sleep";
 
 export default async function handler(
   _req: NextApiRequest,
@@ -11,5 +12,3 @@ export default async function handler(
     imageId: "shimabu",
   });
 }
-
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
