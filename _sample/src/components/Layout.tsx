@@ -1,14 +1,13 @@
 import { ReactNode, VFC } from "react";
 import { Header } from "src/components/Header";
-import { User } from "src/types";
 
-export const Layout: VFC<{ children: ReactNode; user: User }> = ({
+export const Layout: VFC<{ children: ReactNode; todoCount: number }> = ({
   children,
-  user,
+  todoCount,
 }) => {
   return (
     <div>
-      <Header user={user} />
+      <Header todoCount={todoCount} />
       <main>{children}</main>
     </div>
   );

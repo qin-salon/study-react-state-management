@@ -1,25 +1,29 @@
 import type { NextPage } from "next";
-import { useEffect, useState } from "react";
-import { Post } from "src/types";
+import { Todo } from "src/types";
 
-const Index: NextPage = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+type Props = {
+  todos: Todo[];
+  toggleIsDone: (id: Todo["id"]) => void;
+};
 
-  useEffect(() => {
-    fetch("/api/posts")
-      .then((res) => res.json())
-      .then((json) => setPosts(json));
-  }, []);
-
+const Index: NextPage<Props> = ({ todos, toggleIsDone }) => {
   return (
-    <>
-      <h2>記事リスト</h2>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>{post.title}</li>
-        ))}
-      </ul>
-    </>
+    <div>
+      <h3>TODO一覧</h3>
+      {todos.map((todo) => (
+        <div key={todo.id}>
+          <label style={{ fontSize: "2rem" }}>
+            <input
+              type="checkbox"
+              checked={todo.isDone}
+              onChange={() => toggleIsDone(todo.id)}
+              style={{ width: "1.5rem", height: "1.5rem" }}
+            />
+            {todo.text}
+          </label>
+        </div>
+      ))}
+    </div>
   );
 };
 

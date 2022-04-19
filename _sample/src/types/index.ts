@@ -1,9 +1,5 @@
-export type User = {
-  name: string;
-  imageId: string;
-};
-
-export type Post = {
+export type Todo = {
   id: number;
-  title: string;
+  text: string;
+  isDone: boolean;
 };

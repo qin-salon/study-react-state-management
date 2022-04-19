@@ -1,24 +1,39 @@
 import type { AppProps } from "next/app";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Layout } from "src/components/Layout";
-import { User } from "src/types";
+import { Todo } from "src/types";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [user, setUser] = useState<User | null>(null);
+  const [todos, setTodos] = useState<Todo[]>([
+    { id: 1, text: "foo", isDone: false },
+    { id: 2, text: "bar", isDone: true },
+  ]);
 
-  useEffect(() => {
-    fetch("/api/user")
-      .then((res) => res.json())
-      .then((json) => setUser(json));
-  }, []);
+  const addTodo = (text: Todo["text"]) => {
+    setTodos((prevTodos) => {
+      return [...prevTodos, { id: prevTodos.length + 1, text, isDone: false }];
+    });
+  };
 
-  if (!user) {
-    return <div>Loading...</div>;
-  }
+  const toggleIsDone = (id: Todo["id"]) => {
+    setTodos((prevTodos) => {
+      return prevTodos.map((todo) => {
+        if (todo.id !== id) {
+          return todo;
+        }
+        return { ...todo, isDone: !todo.isDone };
+      });
+    });
+  };
 
   return (
-    <Layout user={user}>
-      <Component {...pageProps} user={user} />
+    <Layout todoCount={todos.length}>
+      <Component
+        {...pageProps}
+        todos={todos}
+        toggleIsDone={toggleIsDone}
+        addTodo={addTodo}
+      />
     </Layout>
   );
 }
