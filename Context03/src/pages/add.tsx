@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { ComponentProps } from "react";
-import { useTodosDispatch } from "src/state/todo";
+import { useTodosDispatch } from "src/state/todos";
 
 const Add: NextPage = () => {
   const { addTodo } = useTodosDispatch();

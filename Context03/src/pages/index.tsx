@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useTodos, useTodosDispatch } from "src/state/todo";
+import { useTodos, useTodosDispatch } from "src/state/todos";
 
 const Home: NextPage = () => {
   const todos = useTodos();
