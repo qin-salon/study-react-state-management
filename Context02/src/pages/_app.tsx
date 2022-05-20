@@ -8,7 +8,7 @@ const TODOS: Todo[] = [
   { id: 2, text: "bar", isDone: true },
 ];
 
-export const TodoContext = createContext<{
+export const TodosContext = createContext<{
   todos: Todo[];
   setTodos: Dispatch<SetStateAction<Todo[]>>;
 }>({
@@ -22,10 +22,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const [todos, setTodos] = useState<Todo[]>(TODOS);
 
   return (
-    <TodoContext.Provider value={{ todos, setTodos }}>
+    <TodosContext.Provider value={{ todos, setTodos }}>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </TodoContext.Provider>
+    </TodosContext.Provider>
   );
 }
