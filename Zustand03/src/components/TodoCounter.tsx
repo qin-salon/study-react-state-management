@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useStore } from "src/state/todos";
+import { useStore } from "src/state";
 
 export const TodoCounter: FC = () => {
   const todos = useStore((state) => state.todos);

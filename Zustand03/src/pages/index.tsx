@@ -1,9 +1,15 @@
 import type { NextPage } from "next";
-import { useStore } from "src/state/todos";
+import { useEffect } from "react";
+import { useStore } from "src/state";
 
 const Home: NextPage = () => {
   const todos = useStore((state) => state.todos);
   const toggleTodo = useStore((state) => state.toggleTodo);
+  const fetchUsers = useStore((state) => state.fetchUsers);
+
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
 
   return (
     <div>
