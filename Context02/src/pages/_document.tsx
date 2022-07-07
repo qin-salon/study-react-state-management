@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <link
           rel="stylesheet"
-          href="https://cdn.rawgit.com/kimeiga/bahunya/css/bahunya-0.1.3.css"
+          href="https://cdn.rawgit.com/kimeiga/bahunya/css/bahunya-0.1.2.css"
         />
       </Head>
       <body>
