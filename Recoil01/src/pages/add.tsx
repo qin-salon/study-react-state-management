@@ -1,12 +1,11 @@
 import type { NextPage } from "next";
-import { ComponentProps, Dispatch, SetStateAction } from "react";
-import { Todo } from "src/types";
+import { ComponentProps } from "react";
+import { useSetRecoilState } from "recoil";
+import { todosState } from "src/state/todo";
 
-type Props = {
-  setTodos: Dispatch<SetStateAction<Todo[]>>;
-};
+const Add: NextPage = () => {
+  const setTodos = useSetRecoilState(todosState);
 
-const Add: NextPage<Props> = ({ setTodos }) => {
   const handleSubmit: ComponentProps<"form">["onSubmit"] = (event) => {
     event.preventDefault();
     const text = event.currentTarget.text.value;

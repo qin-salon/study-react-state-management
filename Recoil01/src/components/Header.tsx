@@ -2,11 +2,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { TodoCounter } from "./TodoCounter";
 
-type Props = {
-  todoCount: number;
-};
-
-export const Header: FC<Props> = ({ todoCount }) => {
+export const Header: FC = () => {
   return (
     <header>
       <nav>
@@ -23,7 +19,7 @@ export const Header: FC<Props> = ({ todoCount }) => {
         </Link>
       </nav>
 
-      <TodoCounter todoCount={todoCount} />
+      <TodoCounter />
     </header>
   );
 };

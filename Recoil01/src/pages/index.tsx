@@ -1,13 +1,11 @@
 import type { NextPage } from "next";
-import { Dispatch, SetStateAction } from "react";
+import { useRecoilState } from "recoil";
+import { todosState } from "src/state/todo";
 import { Todo } from "src/types";
 
-type Props = {
-  todos: Todo[];
-  setTodos: Dispatch<SetStateAction<Todo[]>>;
-};
+const Home: NextPage = () => {
+  const [todos, setTodos] = useRecoilState(todosState);
 
-const Home: NextPage<Props> = ({ todos, setTodos }) => {
   const toggleIsDone = (id: Todo["id"]) => {
     setTodos((prevTodos) => {
       return prevTodos.map((todo) => {
