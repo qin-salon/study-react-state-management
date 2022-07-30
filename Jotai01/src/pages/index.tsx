@@ -1,23 +1,9 @@
+import { useAtom } from "jotai";
 import type { NextPage } from "next";
-import { Dispatch, SetStateAction } from "react";
-import { Todo } from "src/types";
+import { toggleTodoAtom } from "src/state/todo";
 
-type Props = {
-  todos: Todo[];
-  setTodos: Dispatch<SetStateAction<Todo[]>>;
-};
-
-const Home: NextPage<Props> = ({ todos, setTodos }) => {
-  const toggleIsDone = (id: Todo["id"]) => {
-    setTodos((prevTodos) => {
-      return prevTodos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, isDone: !todo.isDone };
-        }
-        return todo;
-      });
-    });
-  };
+const Home: NextPage = () => {
+  const [todos, toggleTodo] = useAtom(toggleTodoAtom);
 
   return (
     <div>
@@ -28,7 +14,7 @@ const Home: NextPage<Props> = ({ todos, setTodos }) => {
             <input
               type="checkbox"
               checked={todo.isDone}
-              onChange={() => toggleIsDone(todo.id)}
+              onChange={() => toggleTodo({ id: todo.id })}
               style={{ width: "1.5rem", height: "1.5rem" }}
             />
             {todo.text}
